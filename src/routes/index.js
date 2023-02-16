@@ -13,12 +13,27 @@ Vue.use(VueRouter);
 // main.js에서 import
 // vue router 인스턴스 생성하고 export
 export default new VueRouter({
-  // mode : history 안 쓰면 http://localhost:8080/#/news 처럼 # 가 붙는다
+  // mode : history 안 쓰면 http://localhost:8080/#/login 처럼 # 가 붙는다
   // mode : 'history' 쓰면 # 없어짐
+  // url에 #이 붙어 있는 이유는
+  // #을 이용해서 서버는 이 페이지가 새로운 페이지라는 걸 알지 못한다
+  // 예를 들어 로그인을 눌렀을 때 url을 이동하더라도
+  // 서버 입장에서는 http://localhost:8080/index.html#/login
+  // index.html이라고 하는 index.html 하나의 파일에서의 이동으로만 간주하지
+  // 서버는 #이 붙건 붙지 않건 상관하지 않는다
+  // 서버 입장에서는 이게 login.html인지 signup.html인지 이것만 상관한다
+  // 그래서 만약 #을 떼어버리면
+  // http://localhost:8080/index.html/login 이거는 서버 입장에서 새로운 파일로 간주하기 때문에
   mode: 'history',
   // routes 속성은 vueRouter에 의해서 제어되는 페이지의 정보를 담는 배열
   // route 정보들 넣기
   routes: [
+    {
+      path: '/',
+      // redirect : vue router에서 기본적으로 제공되는 속성
+      // 이제 / 로 가면 바로 /news로 간다
+      redirect: '/login',
+    },
     {
       path: '/login',
       // npm run serve 하고
@@ -40,6 +55,12 @@ export default new VueRouter({
       // 코드 스플리팅은 기본적으로 웹팩의 다이나믹 import 구문이라든지 이런 걸 활용해서 vue에서 좀 더 쉽게 갖다 쓸 수 있게끔
       // 웹팩 만든 사람과 vue 코어 팀이 협업해서 만든 기능
       // 다른 프레임워크는 다이나믹 import 기능이 좀 더 어렵게 되어 있다
+    },
+    // router의 fallback 기능
+    // routes 속성에 없는 url에 대해 반응하는 라우터
+    {
+      path: '*', // 위에 정해진 url을 제외한 모든 url
+      component: () => import('@/views/NotFoundPage.vue'),
     },
   ],
 });
