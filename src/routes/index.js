@@ -22,6 +22,7 @@ export default new VueRouter({
     },
     {
       path: '/main',
+      // 코드 스플리팅
       component: () => import('@/views/MainPage.vue'),
     },
     {
