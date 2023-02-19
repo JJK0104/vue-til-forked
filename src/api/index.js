@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 // axios.create이라는 axios api 이용
+// 이 create 안에 AxiosRequestConfig가 들어가게 된다
 // 요청할 때 공통 설정들을 넣을 수 있다
 const instance = axios.create({
   // http://localhost:3000/ : nodejs를 실행한 서버 주소, api 엔드포인트라고도 얘기한다
