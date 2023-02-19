@@ -23,8 +23,12 @@ export default new Vuex.Store({
   // getters는 computed와 동일한 속성인데 다만 store에 있는 거
   // getters의 첫번째 인자는 state
   getters: {
-    // $store.getters.isLogin
+    // AppHeader.vue에서 $store.getters.isLogin
     isLogin(state) {
+      // LoginForm.vue에서 로그인 성공하면
+      // this.$store.commit('setUsername', data.user.username) 실행된다
+      // 그럼 $store.state.username이 빈문자열이 아니다
+      // state.username이 빈문자열이 아니면 로그인 된거다
       return state.username !== '';
     },
   },
@@ -38,6 +42,7 @@ export default new Vuex.Store({
     setUsername(state, username) {
       state.username = username;
     },
+    // 로그아웃은 state.username을 비우면 된다
     clearUsername(state) {
       state.username = '';
     },

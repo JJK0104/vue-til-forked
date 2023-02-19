@@ -9,6 +9,7 @@
     <div class="navigations">
       <!-- 1 -->
       <template v-if="isUserLogin">
+        <!-- 기본 a태그 동작막기 위해 href="javascript:자바스크립트 코드;" -->
         <a href="javascript:;" @click="logoutUser" class="logout-button">
           Logout
         </a>
@@ -25,12 +26,16 @@
 <script>
 export default {
   computed: {
+    // LoginForm.vue에서 로그인 성공하면
+    // this.$store.commit('setUsername', data.user.username) 실행된다
+    // 그럼 $store.state.username이 빈문자열이 아니다
     isUserLogin() {
       return this.$store.getters.isLogin;
     },
   },
   methods: {
     logoutUser() {
+      // clearUsername 뮤테이션 호출
       this.$store.commit('clearUsername');
       this.$router.push('/login');
     },
