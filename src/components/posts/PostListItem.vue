@@ -13,6 +13,7 @@
 </template>
 
 <script>
+console.log('src/components/posts/PostListItem.vue script');
 export default {
   props: {
     postItem: {
@@ -21,6 +22,7 @@ export default {
     },
   },
 };
+console.log('src/components/posts/PostListItem.vue script 마지막 줄');
 </script>
 
 <style></style>

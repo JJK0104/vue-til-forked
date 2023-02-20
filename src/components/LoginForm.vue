@@ -29,8 +29,14 @@
 </template>
 
 <script>
-import { loginUser } from '@/api/index';
+console.log('LoginForm.vue의 script');
+// 1) 가장 먼저 LoginPage가 렌더링 -> LoginForm.vue 렌더링
+console.log("import { validateEmail } from 'src/utils/validation'");
+console.log("import { loginUser } from 'src/api/index'");
+// import validateEmail, loginUser 순서 바꾸면 콘솔 출력 순서 바뀜
 import { validateEmail } from '@/utils/validation';
+import { loginUser } from '@/api/index';
+// 2) import { loginUser } from '@/api/index'로 인해 api/index.js 실행
 
 export default {
   data() {
@@ -41,6 +47,12 @@ export default {
       // log
       logMessage: '',
     };
+  },
+  created() {
+    console.log('LoginForm created');
+  },
+  mounted() {
+    console.log('LoginForm mounted');
   },
   computed: {
     isUsernameValid() {
@@ -55,10 +67,19 @@ export default {
           username: this.username,
           password: this.password,
         };
+        // 로그인 API
+        console.log(
+          '로그인 버튼 클릭 -> src/api/index.js에서 export/import한 loginUser 함수 호출',
+        );
         const { data } = await loginUser(userData);
-        console.log(data.token);
-        this.$store.commit('setToken', data.token);
+        // 로그인 성공하면 토큰값 받는다
+        console.log('await loginUser(userData); 후 로그인 토큰 값', data.token);
+        // 이제 이 토큰값을 어딘가에 저장하고 api를 호출할 때마다 불러오면 된다
+        console.log("this.$store.commit('setToken')으로 토큰값 state에 저장");
+        this.$store.commit('setToken', data.token); // 이게 실행된 후에서야 store.state.token에 값들어감
         this.$store.commit('setUsername', data.user.username);
+
+        console.log("this.$router.push('/main')으로 MainPage로 이동");
         this.$router.push('/main');
       } catch (error) {
         // 에러 핸들링할 코드
@@ -74,6 +95,7 @@ export default {
     },
   },
 };
+console.log('LoginForm.vue의 script 마지막 줄');
 </script>
 
 <style>

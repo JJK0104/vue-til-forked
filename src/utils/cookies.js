@@ -1,3 +1,5 @@
+console.log('src/utils/cookies.js');
+
 function saveAuthToCookie(value) {
   document.cookie = `til_auth=${value}`;
 }
@@ -31,3 +33,5 @@ export {
   getUserFromCookie,
   deleteCookie,
 };
+
+console.log('src/utils/cookies.js 마지막 줄');

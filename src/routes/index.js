@@ -1,3 +1,5 @@
+console.log('src/routes/index.js 실행');
+
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 // import LoginPage from '@/views/LoginPage.vue';
@@ -30,3 +32,5 @@ export default new VueRouter({
     },
   ],
 });
+
+console.log('src/routes/index.js 마지막 줄');

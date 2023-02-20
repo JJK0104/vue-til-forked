@@ -22,6 +22,7 @@
 </template>
 
 <script>
+console.log('src/components/SignupForm.vue script');
 import { registerUser } from '@/api/index';
 
 export default {
@@ -54,6 +55,7 @@ export default {
     },
   },
 };
+console.log('src/components/SignupForm.vue script 마지막 줄');
 </script>
 
 <style></style>

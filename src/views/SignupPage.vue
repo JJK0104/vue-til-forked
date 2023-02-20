@@ -6,6 +6,7 @@
 </template>
 
 <script>
+console.log('src/views/SignupPage.vue script');
 import SignupForm from '@/components/SignupForm.vue';
 
 export default {
@@ -13,6 +14,7 @@ export default {
     SignupForm,
   },
 };
+console.log('src/views/SignupPage.vue script 마지막 줄');
 </script>
 
 <style></style>

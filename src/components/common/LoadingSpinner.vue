@@ -5,7 +5,9 @@
 </template>
 
 <script>
+console.log('src/components/common/LoadingSpinner.vue script');
 export default {};
+console.log('src/components/common/LoadingSpinner.vue script 마지막 줄');
 </script>
 
 <style scoped>

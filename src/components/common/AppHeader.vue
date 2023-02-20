@@ -1,5 +1,6 @@
 <template>
   <header>
+    <!-- <demo></demo> -->
     <div>
       <router-link to="/" class="logo">
         TIL
@@ -23,7 +24,19 @@
 </template>
 
 <script>
+// import Demo from '@/demo/basic/Demo.vue';
+
+console.log('src/components/common/AppHeader.vue script');
 export default {
+  components: {
+    // Demo,
+  },
+  created() {
+    console.log('AppHeader created');
+  },
+  mounted() {
+    console.log('AppHeader mounted');
+  },
   computed: {
     isUserLogin() {
       return this.$store.getters.isLogin;
@@ -36,6 +49,7 @@ export default {
     },
   },
 };
+console.log('src/components/common/AppHeader.vue script 마지막 줄');
 </script>
 
 <style scoped>
