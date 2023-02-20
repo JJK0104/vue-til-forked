@@ -19,6 +19,9 @@ export function setInterceptors(instance) {
     function(config) {
       // Do something before request is sent
       console.log(
+        '라이프 사이클 훅(동기) 끝나고 실행? 즉, request is sent after 라이프사이클(동기)',
+      );
+      console.log(
         'instance.interceptors.request.use 첫번째 콜백함수 실행... do something before request is sent',
       );
       console.log('config :', config);
@@ -30,6 +33,9 @@ export function setInterceptors(instance) {
       console.log(
         'config.headers.Authorization = store.state.token 후 config.headers.Authorization:',
         config.headers.Authorization,
+      );
+      console.log(
+        `instance.interceptors.request.use 첫번째 콜백함수 return문 바로 위, 즉 이제 종료된다`,
       );
       return config;
     },

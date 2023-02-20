@@ -1,9 +1,9 @@
 console.log('src/main.js 실행');
 import Vue from 'vue';
 console.log('main.js import App.vue 전');
+// 밑에 App, store, router 순서 바꾸면 콘솔 순서도 바뀐다
 import App from './App.vue';
 console.log('main.js import App.vue 후');
-// 밑에 store, router 순서 바꾸면 콘솔 순서도 바뀐다
 import store from '@/store/index';
 import router from '@/routes/index';
 console.log('main.js router, store import후');

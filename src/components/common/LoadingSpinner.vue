@@ -6,7 +6,14 @@
 
 <script>
 console.log('src/components/common/LoadingSpinner.vue script');
-export default {};
+export default {
+  created() {
+    console.log('LoadingSpinner created');
+  },
+  mounted() {
+    console.log('LoadingSpinner mounted');
+  },
+};
 console.log('src/components/common/LoadingSpinner.vue script 마지막 줄');
 </script>
 

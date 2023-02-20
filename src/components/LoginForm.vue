@@ -30,13 +30,14 @@
 
 <script>
 console.log('LoginForm.vue의 script');
-// 1) 가장 먼저 LoginPage가 렌더링 -> LoginForm.vue 렌더링
 console.log("import { validateEmail } from 'src/utils/validation'");
 console.log("import { loginUser } from 'src/api/index'");
 // import validateEmail, loginUser 순서 바꾸면 콘솔 출력 순서 바뀜
 import { validateEmail } from '@/utils/validation';
 import { loginUser } from '@/api/index';
-// 2) import { loginUser } from '@/api/index'로 인해 api/index.js 실행
+// 1) import { loginUser } from '@/api/index'로 인해 api/index.js 실행 --> 여기부터 틀렸다
+// import { loginUser } from '@api/index'는 이전에 실행됨
+// 그냥 콘솔창 순서 확인 ㄱㄱ
 
 export default {
   data() {
@@ -72,8 +73,14 @@ export default {
           '로그인 버튼 클릭 -> src/api/index.js에서 export/import한 loginUser 함수 호출',
         );
         const { data } = await loginUser(userData);
+        console.log(
+          'await loginUser(userData) 바로 밑에 있는 문장... 비동기 처리가 끝났다는 걸 의미?',
+        );
         // 로그인 성공하면 토큰값 받는다
-        console.log('await loginUser(userData); 후 로그인 토큰 값', data.token);
+        console.log(
+          'await loginUser(userData) 후 = 로그인 api 성공 후 로그인 토큰 값',
+          data.token,
+        );
         // 이제 이 토큰값을 어딘가에 저장하고 api를 호출할 때마다 불러오면 된다
         console.log("this.$store.commit('setToken')으로 토큰값 state에 저장");
         this.$store.commit('setToken', data.token); // 이게 실행된 후에서야 store.state.token에 값들어감

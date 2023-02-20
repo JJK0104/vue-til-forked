@@ -62,13 +62,27 @@ function registerUser(userData) {
 // 로그인 API
 // 11) LoginForm.vue에서 loginUser호출
 function loginUser(userData) {
+  console.log('src/api/index.js의 loginUser 실행');
   console.log("로그인 api 호출 : newInstance.post('login', userData)");
+  console.log(
+    'newInstance는 axios.create({}).interceptors.request.use가 설정된 엑시오스 인스턴스다 그래서 request 보낼때마다 intercept 당한다?',
+  );
   return newInstance.post('login', userData);
 }
 
 // 학습 노트 데이터를 조회하는 API
 function fetchPosts() {
+  console.log('src/api/index.js의 fetchPosts 실행');
+  console.log(
+    `근데 이거 하기 전에 학습 노트 데이터 swagger(http://localhost:3000/api/docs/)에서 만들어라
+    POST /posts에서 자물쇠 아이콘 클릭해서 로그인 하고 
+    Try it out 클릭해서 데이터 생성하면 해당 아이디로 학습 노트 데이터 생성된다.
+    `,
+  );
   console.log("학습 노트 데이터를 조회하는 api호출 : newInstance.get('posts')");
+  console.log(
+    'newInstance는 axios.create({}).interceptors.request.use가 설정된 엑시오스 인스턴스다 그래서 request 보낼때마다 intercept 당한다?',
+  );
   // localhost:3000/api/docs로 가면 swagger 나오는데 거기서
   // GET /posts의 Try it out 클릭 -> execute 버튼 클릭하면
   // curl이 잘 날라갔고 Request URL 역시 http://localhost:3000/posts 로 잘 날라갔다
@@ -81,6 +95,7 @@ function fetchPosts() {
   // 다시 Authorize 버튼을 누르고 이 토큰 값을 복붙하고 Authorize 버튼을 누르면 Authorized라는 문구가 뜰 거다
   // 이제부터는 로그인된 사용자라고 생각하고 api를 날릴 수 있다
   // 이제 다시 GET /posts Try it out 클릭
+  console.log("return newInstance.get('posts'); 바로 위, 비동기 시작전?");
   return newInstance.get('posts');
 }
 
