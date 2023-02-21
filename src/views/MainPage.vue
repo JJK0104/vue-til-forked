@@ -51,6 +51,15 @@ export default {
       // data를 받아오면 이제 this.isLoading을 false로
       this.isLoading = false;
       this.postItems = data.posts;
+      // 근데 로그인 하고 새로고침하면 main.js부터 다시 실행되면서
+      // 401에러(권한 에러)가 뜬다.
+      // 즉 MainPage에 진입해서 게시글을 조회하는 post 요청을 날리는데 개발자 도구 - Network의 posts를 보면 Authorization: 속성이 비어있다
+      // 왜냐면 여태까지 로그인한 상태를 자바스크립트 레벨에서 저장했었다
+      // 자바스크립트 레벨은 뷰 개발자 도구의 store에 저장해놨다.
+      // 근데 당연히 새로고침하면 자바스크립트가 refresh 상태가 되면서 state의 token과 username이 사라지면서
+      // MainPage로 다시 진입할 때 로그인을 다시 하지 않으면 로딩스피너가 계속 뜨고 api 요청도 먹통이 된다
+      // 이런 부분을 어떻게 쿠키로 처리할 수 있을지 살펴보자
+      // LoginForm.vue를 보자
     },
   },
   created() {

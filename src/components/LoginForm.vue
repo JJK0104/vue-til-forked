@@ -38,6 +38,7 @@ import { loginUser } from '@/api/index';
 // 1) import { loginUser } from '@/api/index'로 인해 api/index.js 실행 --> 여기부터 틀렸다
 // import { loginUser } from '@api/index'는 이전에 실행됨
 // 그냥 콘솔창 순서 확인 ㄱㄱ
+import { saveAuthToCookie, saveUserToCookie } from '@/utils/cookies';
 
 export default {
   data() {
@@ -85,7 +86,21 @@ export default {
         console.log("this.$store.commit('setToken')으로 토큰값 state에 저장");
         this.$store.commit('setToken', data.token); // 이게 실행된 후에서야 store.state.token에 값들어감
         this.$store.commit('setUsername', data.user.username);
-
+        // 단순히 자바스크립트 레벨에서 저장하는 게 아니라
+        // 브라우저 저장소를 이용해서 토큰값을 저장해 놓으면 새로고침을 하더라도 브라우저 저장소에서 그 값을 꺼내와서 사용할 수 있다.
+        // 따라서 이 부분에 src/utils/cookies.js 에 정의된 함수들을 사용하겠다.
+        saveAuthToCookie(data.token);
+        saveUserToCookie(data.user.username);
+        // 이제 쿠키에다 토큰과 username을 다 저장한 상태가 된다
+        // 이제 화면으로 돌아가서 쿠키 레벨을 확인해보자
+        // 쿠키가 저장되는 걸 확인할 수 있는 방법은
+        // 개발자 도구 - Application 패널 - Storage - Cookies - http://localhost:8080에 있다
+        // 로그인 하고 til_auth와 til_user가 잘 저장되나 확인
+        // 아직까지는 새로고침하면 여전히 문제가 있다
+        // 왜냐면 지금은 쿠키에 저장된 값이 vue의 store에 연결되어 있지 않으니까
+        // src/utils/cookies에 보면 쿠키에서 값을 가져올 때 get~FromCookie가 있다
+        // 이 함수들을 이용해서 쿠키에 저장된 값을 store/index.js 에서 활용하면 된다.
+        // src/store/index.js로 가보자
         console.log("this.$router.push('/main')으로 MainPage로 이동");
         this.$router.push('/main');
       } catch (error) {
