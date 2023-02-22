@@ -11,7 +11,9 @@
         ></PostListItem>
       </ul>
     </div>
+    <!-- 버튼 생성 -->
     <router-link to="/add" class="create-button">
+      <!-- index.html에 아이오닉 아이콘 추가했다 -->
       <i class="ion-md-add"></i>
     </router-link>
   </div>

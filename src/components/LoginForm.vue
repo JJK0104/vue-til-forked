@@ -60,7 +60,7 @@ export default {
         // this.$store.commit('setUsername', data.user.username);
         // saveAuthToCookie(data.token);
         // saveUserToCookie(data.user.username);
-        this.$router.push('/main');
+        // this.$router.push('/main');
         // LOGIN action 호출하면서 인자로 userData 넘겨주기
         // 그리고 앞에 await가 붙어야 한다.
         // 왜냐면 비동기 처리가 끝나고 MainPage로 이동해야 되니까

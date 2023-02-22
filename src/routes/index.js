@@ -24,8 +24,10 @@ export default new VueRouter({
       path: '/main',
       component: () => import('@/views/MainPage.vue'),
     },
+    // 추가
     {
       path: '/add',
+      // 코드 스플릿 이용
       component: () => import('@/views/PostAddPage.vue'),
     },
     {
