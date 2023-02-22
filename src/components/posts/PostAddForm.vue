@@ -49,6 +49,7 @@ export default {
           title: this.title,
           contents: this.contents,
         });
+        // 성공하면 MainPage로 가기
         this.$router.push('/main');
         console.log(response);
       } catch (error) {

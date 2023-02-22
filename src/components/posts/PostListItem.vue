@@ -28,6 +28,7 @@ export default {
     async deleteItem() {
       if (confirm('You want to delete it?')) {
         await deletePost(this.postItem._id);
+        // MainPage로
         this.$emit('refresh');
       }
       // console.log('deleted');
