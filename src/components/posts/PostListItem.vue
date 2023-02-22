@@ -34,6 +34,9 @@ export default {
     },
     routeEditPage() {
       const id = this.postItem._id;
+      // 특정 페이지로 이동
+      // 다이나믹 라우트 매칭 이용
+      // routes/index.js ㄱㄱ
       this.$router.push(`/post/${id}`);
     },
   },

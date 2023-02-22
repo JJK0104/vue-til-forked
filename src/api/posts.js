@@ -2,11 +2,13 @@
 import { posts } from './index';
 
 // 학습 노트 데이터 목록을 조회하는 API
+// MainPage.vue에서 import
 function fetchPosts() {
   return posts.get('/');
 }
 
 // 특정 학습 노트를 조회하는 API
+// PostEditForm.vue에서 import
 function fetchPost(postId) {
   return posts.get(postId);
 }
@@ -22,6 +24,7 @@ function deletePost(postId) {
 }
 
 // 학습 노트 데이터를 수정하는 API
+// PostEditForm.vue에서 import
 function editPost(postId, postData) {
   return posts.put(postId, postData);
 }

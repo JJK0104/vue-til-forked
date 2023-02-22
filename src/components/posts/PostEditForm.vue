@@ -50,6 +50,7 @@ export default {
           title: this.title,
           contents: this.contents,
         });
+        // 성공하면 MainPage로
         this.$router.push('/main');
       } catch (error) {
         console.log(error);
@@ -57,6 +58,7 @@ export default {
       }
     },
   },
+  // created 자체에 async 붙였네
   async created() {
     const id = this.$route.params.id;
     const { data } = await fetchPost(id);

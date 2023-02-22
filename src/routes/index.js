@@ -28,6 +28,10 @@ export default new VueRouter({
       path: '/add',
       component: () => import('@/views/PostAddPage.vue'),
     },
+    // PostListItem.vue의 this.$router.push(`/post/${id}`);
+    // url 주소 : localhost:8080/post/3e88 형식
+    // 화면은 PostEditPage
+    // this.$route.params는 { id : '3e88' }
     {
       path: '/post/:id',
       component: () => import('@/views/PostEditPage.vue'),
