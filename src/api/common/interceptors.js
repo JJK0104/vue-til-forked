@@ -1,7 +1,14 @@
 import store from '@/store/index';
 
+// api/index.js에서
+// const instance = axios.create({
+//   baseURL: `${process.env.VUE_APP_API_URL}${url}`,
+// });
+// return setInterceptors(instance);
+
 export function setInterceptors(instance) {
   // Add a request interceptor
+  // instance는 axios.create({})
   instance.interceptors.request.use(
     function(config) {
       // Do something before request is sent

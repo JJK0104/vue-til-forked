@@ -31,13 +31,22 @@ export default {
       return this.$store.getters.isLogin;
     },
     logoLink() {
+      // 로그인 했으면 MainPage로, 로그인 안 한 상태면 로그인 페이지로
       return this.$store.getters.isLogin ? '/main' : '/login';
     },
   },
   methods: {
     logoutUser() {
       this.$store.commit('clearUsername');
+      // clearUsername(state) {
+      //   state.username = '';
+      // },
       this.$store.commit('clearToken');
+      // clearToken(state) {
+      //   state.token = '';
+      // },
+
+      // 브라우저 저장소에 있는 인증값과 사용자 이름을 삭제
       deleteCookie('til_auth');
       deleteCookie('til_user');
       this.$router.push('/login');
